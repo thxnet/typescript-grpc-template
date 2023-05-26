@@ -1,7 +1,8 @@
 {
   "name": "@thxnet/io-helper-ts-template",
   "version": "0.1.0",
-  "main": "./dist/src/index.js",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
   "repository": "git@github.com:thxnet/io-helper-ts-template.git",
   "author": "NoelBao <noel@thxlab.io>",
   "license": "MIT",
@@ -10,18 +11,24 @@
     "@types/node": "^20.2.4",
     "grpc-tools": "^1.12.4",
     "prettier": "^2.8.8",
+    "ts-node": "^10.9.1",
     "tslib": "^2.5.2",
     "typescript": "^5.0.4"
   },
   "dependencies": {
     "@grpc/grpc-js": "^1.8.14",
     "@grpc/proto-loader": "^0.7.7",
+    "@protobuf-ts/grpc-backend": "^2.9.0",
+    "@protobuf-ts/grpc-transport": "^2.9.0",
     "@protobuf-ts/runtime": "^2.9.0",
     "@protobuf-ts/runtime-rpc": "^2.9.0",
-    "dotenv": "^16.0.3"
+    "dotenv": "^16.0.3",
+    "pino": "^8.14.1"
   },
   "scripts": {
     "format": "prettier -w ./src",
-    "protos": "protoc --ts_out ./src/protos_helpers --proto_path protos protos/*.proto"
+    "protos": "protoc --ts_out ./src/protos_helpers --ts_opt client_generic,server_generic,force_optimize_speed --proto_path protos protos/*.proto",
+    "build": "tsc",
+    "test": "tsc && node ./dist/index.js"
   }
 }
