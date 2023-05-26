@@ -19,7 +19,7 @@ export const greeterService: IGreeter = {
     request: HelloRequest,
     context: ServerCallContext
   ): Promise<HelloReply> {
-    console.debug("sayHello", request);
+    console.debug("Greeter sayHello", request);
 
     const name = request.name;
 
@@ -33,7 +33,7 @@ export const greeterService: IGreeter = {
     responses: RpcInputStream<HelloReply>,
     context: ServerCallContext
   ): Promise<void> {
-    console.debug("sayHelloStreamReply", request);
+    console.debug("Greeter sayHelloStreamReply", request);
 
     const name = request.name;
 
