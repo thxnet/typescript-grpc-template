@@ -15,7 +15,7 @@ import { IHealth } from "../protos_helpers/health.server";
 
 export { Health };
 
-async function awaitSec(sec: number) {
+async function awaitSec(sec: number): Promise<boolean> {
   return new Promise((res) => {
     setTimeout(() => {
       res(true);
@@ -32,6 +32,8 @@ export const healthService: IHealth = {
 
     // const service = request.service;
 
+    // if service is an empty string, means all services
+
     return HealthCheckResponse.create({
       status: HealthCheckResponse_ServingStatus.SERVING,
     });
@@ -45,6 +47,8 @@ export const healthService: IHealth = {
     console.debug("Health watch", request);
 
     // const service = request.service;
+
+    // if service is an empty string, means all services
 
     for (let i = 0; i < 1000000; i++) {
       await responses.send(
