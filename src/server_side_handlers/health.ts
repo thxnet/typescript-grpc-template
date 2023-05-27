@@ -50,16 +50,31 @@ export const healthService: IHealth = {
 
     // if service is an empty string, means all services
 
-    for (let i = 0; i < 1000000; i++) {
+    // this section is just an example, since:
+    // `watch` method should subsequently send a new message to the client whenever the service's serving status changes.
+
+    const status = [
+      HealthCheckResponse_ServingStatus.UNKNOWN,
+      HealthCheckResponse_ServingStatus.SERVING,
+      HealthCheckResponse_ServingStatus.NOT_SERVING,
+      HealthCheckResponse_ServingStatus.SERVICE_UNKNOWN,
+    ];
+    let index = 0;
+
+    while (true) {
       await responses.send(
         HealthCheckResponse.create({
-          status: HealthCheckResponse_ServingStatus.SERVING,
+          status: status[index],
         })
       );
 
-      await awaitSec(3);
+      await awaitSec(10);
+
+      index++;
+
+      if (index > 3) index = 0;
     }
 
-    await responses.complete();
+    // await responses.complete();
   },
 };
