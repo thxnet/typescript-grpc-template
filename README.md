@@ -5,5 +5,5 @@ yarn
 
 yarn protos
 
-yarn test
+yarn start
 ```
