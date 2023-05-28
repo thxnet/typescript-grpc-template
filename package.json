@@ -10,7 +10,9 @@
     "@protobuf-ts/plugin": "^2.9.0",
     "@types/node": "^20.2.4",
     "grpc-tools": "^1.12.4",
+    "mkdirp": "^3.0.1",
     "prettier": "^2.8.8",
+    "rimraf": "^5.0.1",
     "ts-node": "^10.9.1",
     "tslib": "^2.5.2",
     "typescript": "^5.0.4"
@@ -29,6 +31,7 @@
     "format": "prettier -w ./src",
     "protos": "protoc --ts_out ./src/protos_helpers --ts_opt client_generic,server_generic,force_optimize_speed --proto_path protos protos/*.proto",
     "build": "tsc",
-    "start": "tsc && node ./dist/index.js"
+    "server": "node ./dist/server.js",
+    "clean": "rimraf ./dist && mkdirp ./dist"
   }
 }
