@@ -5,5 +5,5 @@ yarn
 
 yarn protos
 
-yarn start
+yarn clean && yarn build && yarn server
 ```
